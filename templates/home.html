@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row hero-section">
+        <div class="col-md-6">
+            <h1>Your Dream Car Awaits</h1>
+            <p>Discover the best deals on the latest models. Drive away with style and confidence.</p>
+            <a href="#" class="btn btn-primary">Explore Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/patrick-rogers-3YxPKNxKO-0-unsplash.jpg" alt="Car Image" class="hero-image">
+        </div>
+    </div>
+</div>
+<form method="get" class="container">
+    <label for="brand">Filter by brand:</label>
+    <select name="brand" id="brand">
+        <option value="">All</option>
+        {% for brand in brands %}
+        <option value="{{ brand.id }}">{{ brand.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+<div class="container">
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <a href="{% url 'car_detail' car.id %}">
+
+
+                    <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.title }}">
+                    <div class="card-body">
+                        <h6>
+                            {{car.brand}}
+                        </h6>
+                        <h5 class="card-title">{{ car.title }}</h5>
+                        <p class="card-text">Price: $ {{ car.price }}</p>
+                        <p class="card-text">Model Year: {{ car.model_year }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Sign Up</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <!-- {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors | striptags  }}
+            </div>
+        {% endfor %} -->
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+    <br>
+    <a href="{% url 'login_page' %}">
+
+        Login,
+    </a>
+    <span >If have an account.</span>
+</div>
+{% endblock %}
